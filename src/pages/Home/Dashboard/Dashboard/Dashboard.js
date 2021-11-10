@@ -6,35 +6,36 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import MailIcon from '@mui/icons-material/Mail';
+// import InboxIcon from '@mui/icons-material/MoveToInbox';
+// import List from '@mui/material/List';
+// import ListItem from '@mui/material/ListItem';
+// import ListItemIcon from '@mui/material/ListItemIcon';
+// import ListItemText from '@mui/material/ListItemText';
+// import MailIcon from '@mui/icons-material/Mail';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import {
-   Routes,
+   Switch,
     Route,
     Link,
-    useMatch
+   useRouteMatch
 } from "react-router-dom";
 
 import { Button } from '@mui/material';
-import DashboardHome from '../DashboardHome/DashboardHome';
+
 import MakeAdmin from '../MakeAdmin/MakeAdmin';
 import AddDoctor from '../AddDoctor/AddDoctor';
-import useAuth from './../../../hooks/useAuth';
-import AdminRoute from './../../Login/AdminRoute/AdminRoute';
+import useAuth from './../../../Hooks/useAuth';
+import AdminRoute from './../../../Login/AdminRoute/AdminRoute';
+import Orders from '../Orders/Orders';
 
 const drawerWidth = 200;
 
 function Dashboard(props) {
     const { window } = props;
     const [mobileOpen, setMobileOpen] = React.useState(false);
-    let { path, url } = useMatch ();
+    let { path, url } = useRouteMatch ();
     const { admin } = useAuth();
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
@@ -44,13 +45,20 @@ function Dashboard(props) {
         <div>
             <Toolbar />
             <Divider />
-            <Link to="/appointment"><Button color="inherit">Appointment</Button></Link>
-            <Link to={`${url}`}><Button color="inherit">Dashboard</Button></Link>
+             <Link to={`${url}`}><Button color="inherit">Dashboard</Button></Link>
+             <Link to={`${url}/orders`}>
+                <li className="dashboard-menu mt-5">My Order</li>
+              </Link>
+
+              <Link to={`${url}/review`}>
+                <li className="dashboard-menu mt-5">Review</li>
+              </Link>
+              
             {admin && <Box>
                 <Link to={`${url}/makeAdmin`}><Button color="inherit">Make Admin</Button></Link>
                 <Link to={`${url}/addDoctor`}><Button color="inherit">Add Doctor</Button></Link>
             </Box>}
-            <List>
+            {/* <List>
                 {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
                     <ListItem button key={text}>
                         <ListItemIcon>
@@ -59,7 +67,7 @@ function Dashboard(props) {
                         <ListItemText primary={text} />
                     </ListItem>
                 ))}
-            </List>
+            </List> */}
         </div>
     );
 
@@ -127,9 +135,9 @@ function Dashboard(props) {
             >
                 <Toolbar />
 
-                <Routes>
-                    <Route exact path={path}>
-                        <DashboardHome></DashboardHome>
+                <Switch>
+                    <Route exact path={`${path}/orders`}>
+                        <Orders/>
                     </Route>
                     <AdminRoute path={`${path}/makeAdmin`}>
                         <MakeAdmin></MakeAdmin>
@@ -137,7 +145,7 @@ function Dashboard(props) {
                     <AdminRoute path={`${path}/addDoctor`}>
                         <AddDoctor></AddDoctor>
                     </AdminRoute>
-                </Routes>
+                </Switch>
 
             </Box>
         </Box>

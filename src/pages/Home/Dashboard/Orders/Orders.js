@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import useAuth from './../../../hooks/useAuth';
+import useAuth from '../../../Hooks/useAuth';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -8,26 +8,26 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
-const Appointments = ({ date }) => {
+const Orders = ({ date }) => {
     const { user, token } = useAuth();
-    const [appointments, setAppointments] = useState([])
+    const [orders, setOrders] = useState([])
 
     useEffect(() => {
-        const url = `https://stark-caverns-04377.herokuapp.com/appointments?email=${user.email}&date=${date.toLocaleDateString()}`
+        const url = `http://localhost:5000/order?email=${user.email}`
         fetch(url, {
             headers: {
                 'authorization': `Bearer ${token}`
             }
         })
             .then(res => res.json())
-            .then(data => setAppointments(data));
+            .then(data => setOrders(data));
     }, [date, user.email, token])
 
     return (
         <div>
-            <h2>Appointments: {appointments.length}</h2>
+            <h2>Total Orders: {orders.length}</h2>
             <TableContainer component={Paper}>
-                <Table sx={{}} aria-label="Appointments table">
+                <Table sx={{}} aria-label="Orders table">
                     <TableHead>
                         <TableRow>
                             <TableCell>Name</TableCell>
@@ -37,17 +37,17 @@ const Appointments = ({ date }) => {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {appointments.map((row) => (
+                        {orders.map((row) => (
                             <TableRow
                                 key={row._id}
                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                             >
                                 <TableCell component="th" scope="row">
-                                    {row.patientName}
+                                    {row.email}
                                 </TableCell>
                                 <TableCell align="right">{row.time}</TableCell>
-                                <TableCell align="right">{row.serviceName}</TableCell>
-                                <TableCell align="right">{row.fat}</TableCell>
+                                <TableCell align="right">{row.product}</TableCell>
+                                <TableCell align="right">{row.price}</TableCell>
                             </TableRow>
                         ))}
                     </TableBody>
@@ -57,4 +57,4 @@ const Appointments = ({ date }) => {
     );
 };
 
-export default Appointments;
+export default Orders;
