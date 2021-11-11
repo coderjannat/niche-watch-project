@@ -24,11 +24,14 @@ import {
 
 import { Button } from '@mui/material';
 
-import MakeAdmin from '../MakeAdmin/MakeAdmin';
+
 import AddDoctor from '../AddDoctor/AddDoctor';
 import useAuth from './../../../Hooks/useAuth';
 import AdminRoute from './../../../Login/AdminRoute/AdminRoute';
 import Orders from '../Orders/Orders';
+import MakeAdmin from '../MakeAdmin/MakeAdmin';
+import Review from '../Review/Review';
+import DetailOrder from '../DetailOrder/DetailOrder';
 
 const drawerWidth = 200;
 
@@ -47,12 +50,16 @@ function Dashboard(props) {
             <Divider />
              <Link to={`${url}`}><Button color="inherit">Dashboard</Button></Link>
              <Link to={`${url}/orders`}>
-                <li className="dashboard-menu mt-5">My Order</li>
+                <li className="dashboard-menu mt-5">Manage Order</li>
               </Link>
 
               <Link to={`${url}/review`}>
                 <li className="dashboard-menu mt-5">Review</li>
               </Link>
+              <Link to={`${url}/detailorder`}>
+                <li className="dashboard-menu mt-5">My Order</li>
+              </Link>
+    
               
             {admin && <Box>
                 <Link to={`${url}/makeAdmin`}><Button color="inherit">Make Admin</Button></Link>
@@ -139,8 +146,15 @@ function Dashboard(props) {
                     <Route exact path={`${path}/orders`}>
                         <Orders/>
                     </Route>
+                    <Route exact path={`${path}/detailorder`}>
+                        <DetailOrder/>
+                    </Route>
+                    <Route exact path={`${path}/review`}>
+                        <Review/>
+                    </Route>
+                    
                     <AdminRoute path={`${path}/makeAdmin`}>
-                        <MakeAdmin></MakeAdmin>
+                        <MakeAdmin/>
                     </AdminRoute>
                     <AdminRoute path={`${path}/addDoctor`}>
                         <AddDoctor></AddDoctor>

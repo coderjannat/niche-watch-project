@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+
 import useAuth from "../../Hooks/useAuth";
 import axios from 'axios';
 import { useParams } from 'react-router';
@@ -23,7 +23,7 @@ const PlaceOrder = () => {
   const history = useHistory();
 
   useEffect(() => {
-    fetch(`http://localhost:5000/watchCollection/${id}`)
+    fetch(`https://still-river-71219.herokuapp.com/watchCollection/${id}`)
       .then(res => res.json())
       .then(data => setWatch(data))
   }, [])
@@ -31,14 +31,14 @@ const PlaceOrder = () => {
   const { register, handleSubmit, reset, formState: { errors }, } = useForm();
 
   const onSubmit = (data) => {
-    axios.post('http://localhost:5000/order', data)
+    axios.post('https://still-river-71219.herokuapp.com/order', data)
       .then(res => {
         if (res) {
           alert('added successful')
           reset()
         }
       })
-    history.push("/adminDashboard")
+    history.push("/dashboard")
   };
   return (
     <>
@@ -95,11 +95,18 @@ const PlaceOrder = () => {
                 />
                 <br />
                 <input
-                  {...register("place", { required: true })}
+                  {...register("product", { required: true })}
                   placeholder="product"
                   defaultValue={watch.name}
                   className="p-2 m-2"
                   readOnly
+                />
+                <input
+                  {...register("address", { required: true })}
+                  placeholder="address"
+                  defaultValue = "Address"
+                  className="p-2 m-2"
+                  
                 />
                 <br />
                 {errors.exampleRequired && <span>This field is required</span>}
@@ -111,88 +118,6 @@ const PlaceOrder = () => {
           </Grid>
         </Box>
       </Container>
-
-
-
-      {/* <Container>
-        {/* Stack the columns on mobile by making one full-width and the other half-width */}
-      {/* <Row className="p-4">
-          <Col xs={12} md={5}>
-          <div classNameName="w-75  mx-auto">
-          <Card.Title>{watch.name}</Card.Title>
-            <Card.Img  className="img-thumbnail" variant="top" src={watch.img} /> */}
-
-      {/* <Image src={destination.img} thumbnail /> */}
-
-      {/* <Card.Body>
-              
-              <Card.Title>Cost:{watch.price}</Card.Title>
-              <Card.Text>
-              
-              {watch.description}
-              </Card.Text>
-            </Card.Body>
-            </div>
-          </Col>
-          <Col xs={12} md={7}>
-            
-              <div>
-      <h1 className="mt-5 text-center text-info">
-        Please Book for your Tickets
-      </h1>
-      <div className="login-box w-25 m-auto mt-5">
-        <div className="event-box border border d-flex justify-content-center align-items-center">
-          <div className="login-form">
-            <form onSubmit={handleSubmit(onSubmit)}>
-              <input
-                {...register("name")}
-                defaultValue={user.displayName}
-                placeholder="Name"
-                className="p-2 m-2"
-                readOnly
-              />
-              <br />
-
-              <input
-                {...register("email", { required: true })}
-                placeholder="Email"
-                defaultValue={user.email}
-                className="p-2 m-2"
-                readOnly
-              />
-              <br />
-          
-              <input className="m-2 p-2  fs-6" type="date" {...register("date")} />
-              <br />
-              <input type="number"
-                {...register("price", { required: true })}
-                placeholder="price"
-                className="p-2 m-2"
-              />
-              <br />
-              <input
-                {...register("place", { required: true })}
-                placeholder="place"
-                className="p-2 m-2"
-              />
-              <br />
-              {errors.exampleRequired && <span>This field is required</span>}
-
-              <input type="submit" className="btn btn-info w-50 m-2" />
-            </form>
-            <p className="m-2 mb-2">
-              already have account?{" "}
-              <Link to="/login">
-                <span className="text-danger">create account</span>
-              </Link>
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-          </Col>
-        </Row> */}
-      {/* </Container>  */}
     </>
   );
 };

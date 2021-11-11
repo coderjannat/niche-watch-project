@@ -1,24 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import useAuth from '../../../Hooks/useAuth';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
+import Typography from '@mui/material/Typography';
+import { Container, Grid } from '@mui/material';
 import Paper from '@mui/material/Paper';
 import { Button } from '@mui/material';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
-import { useForm } from "react-hook-form";
 
-const Orders = ({ date }) => {
+
+const DetailOrder = ({ date }) => {
     const { user, token } = useAuth();
     const [orders, setOrders] = useState([]);
     const [rest, setRest] = useState([]);
-    // const [status, setStatus] = useState("");
-    const [orderId, setOrderId] = useState("");
-    const { register, handleSubmit } = useForm();
     const [smShow, setSmShow] = useState(false);
     const history = useHistory();
 
@@ -35,29 +28,6 @@ const Orders = ({ date }) => {
     }, [date, user.email, token])
 
 
-// STATUS UPDATE
-    const handleOrderId = (id) => {
-        setOrderId(id);
-        console.log(id);
-    };
-
-
-    const onSubmit = (data) => {
-        console.log(data, orderId);
-        fetch(`http://localhost:5000/statusUpdate/${orderId}`, {
-            method: "PUT",
-            headers: { "content-type": "application/json" },
-            body: JSON.stringify(data),
-        })
-            .then(res => {
-                if (res) {
-                    alert('status update successfully')
-
-                }
-            })
-        //   .then((res) => res.json())
-        //   .then((result) => console.log(result));
-    };
 
 
     const handleDelete = (id) => {
@@ -85,7 +55,46 @@ const Orders = ({ date }) => {
     return (
         <div>
             <h2>Total Orders: {orders.length}</h2>
-            <TableContainer component={Paper}>
+
+            <Container>
+            <Typography variant="h4" sx={{ color: 'info.main', mb: 3 }}>Watch</Typography>
+
+            <Grid container spacing={2}>
+
+                {
+                     orders.map(( order,index) => {
+                         return (
+                        <Grid item xs={12} sm={6} md={4} key={index}>
+                            key={index}
+                        <Paper elevation={3} sx={{ py: 5 }}>
+                           
+                            <Typography variant="h6" gutterBottom component="div">
+                                {order.price}
+                            </Typography>
+                            <Typography variant="h6" gutterBottom component="div">
+                                {order.product}
+                            </Typography>
+                            {/* <Typography variant="caption" display="block" gutterBottom>
+                                {description} SPACES AVAILABLE
+                            </Typography> */}
+                            <Button variant="contained" onClick={() => handleDelete(order._id)}>Delete</Button>
+                        </Paper>
+                    </Grid>)
+                     }
+                    
+                    // <Watch
+                    //     key={index}
+                    //     watch={watch}
+                    // >
+                    // </Watch>
+                    
+                    )}
+               
+
+            </Grid>
+        </Container>
+
+            {/* <TableContainer component={Paper}>
                 <Table sx={{}} aria-label="Orders table">
                     <TableHead>
                         <TableRow>
@@ -111,17 +120,7 @@ const Orders = ({ date }) => {
                                 <TableCell align="right">{row.address}</TableCell>
                                 <TableCell align="right">{row.price}</TableCell>
                                 <TableCell align="right">
-                                    <form onSubmit={handleSubmit(onSubmit)}>
-                                        <select
-                                            onClick={() => handleOrderId(row?._id)}
-                                            {...register("status")}
-                                        >
-                                            <option value={row?.status}>{row?.status}</option>
-                                            <option value="approve">pending</option>
-                                            <option value="done">Done</option>
-                                        </select>
-                                        <input type="submit" />
-                                    </form>
+                                    
 
                                 </TableCell>
                                 <TableCell align="right">
@@ -131,9 +130,9 @@ const Orders = ({ date }) => {
                         ))}
                     </TableBody>
                 </Table>
-            </TableContainer>
+            </TableContainer> */}
         </div>
     );
 };
 
-export default Orders;
+export default DetailOrder;
