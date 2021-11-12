@@ -24,7 +24,7 @@ const WatchCollection = () => {
 
     return (
         <Container>
-            <Typography variant="h4" sx={{ color: 'info.main', mb: 3 }}>Watch</Typography>
+            <Typography variant="h3" sx={{ color: 'text.primary', mb: 3 }}>Our Popular Watch Collection</Typography>
 
             <Grid container spacing={2}>
 

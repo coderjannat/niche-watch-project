@@ -32,6 +32,7 @@ import Orders from '../Orders/Orders';
 import MakeAdmin from '../MakeAdmin/MakeAdmin';
 import Review from '../Review/Review';
 import DetailOrder from '../DetailOrder/DetailOrder';
+import LogOut from './Logout/LogOut';
 
 const drawerWidth = 200;
 
@@ -58,6 +59,9 @@ function Dashboard(props) {
               </Link>
               <Link to={`${url}/detailorder`}>
                 <li className="dashboard-menu mt-5">My Order</li>
+              </Link>
+              <Link to={`${url}/logOut`}>
+                <li className="dashboard-menu mt-5">LogOut</li>
               </Link>
     
               
@@ -145,6 +149,9 @@ function Dashboard(props) {
                 <Switch>
                     <Route exact path={`${path}/orders`}>
                         <Orders/>
+                    </Route>
+                    <Route exact path={`${path}/logOut`}>
+                        <LogOut/>
                     </Route>
                     <Route exact path={`${path}/detailorder`}>
                         <DetailOrder/>
