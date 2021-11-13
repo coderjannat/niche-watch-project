@@ -1,8 +1,11 @@
 import React from 'react';
+import Navigation from '../../Home/Shared/Navigation/Navigation';
 import { Container, Typography } from '@mui/material';
 
 const Faq = () => {
     return (
+        <>
+        <Navigation></Navigation>
         <Container>
             <Typography variant="h3" sx={{ color: 'text.primary', mb: 3,pt:4 }}>Frequently Asked Question</Typography>
             <Typography variant="h6" sx={{ color: 'text.primary', mb: 3,pt:4 }}>1. Use service data to identify your most common questions.
@@ -45,7 +48,7 @@ Designing an FAQ page may seem like a piece of cake, but it's easy to get carrie
 
             
         </Container>
-
+</>
     );
 };
 

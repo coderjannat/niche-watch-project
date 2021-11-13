@@ -1,5 +1,6 @@
 import React from 'react';
 import Banner from '../Banner/Banner';
+import GoogleMap from '../GoogleMap/GoogleMap';
 import ReviewCarouel from '../ReviewCarouel/ReviewCarouel';
 import Navigation from '../Shared/Navigation/Navigation';
 import WatchCollection from '../WatchCollection/WatchCollection';
@@ -11,6 +12,7 @@ const Home = () => {
             <Banner></Banner>
             <WatchCollection></WatchCollection>
             <ReviewCarouel/>
+            <GoogleMap></GoogleMap>
         </div>
     );
 };

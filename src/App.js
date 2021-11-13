@@ -19,6 +19,7 @@ import DetailOrder from './pages/Home/Dashboard/DetailOrder/DetailOrder';
 import Faq from './pages/Home/Faq/Faq';
 import PrivateRoute from './pages/privateRoute/PrivateRoute'
 import Footer from './pages/Home/Shared/Footer/Footer';
+import NotFound from './pages/Home/NotFound/NotFond';
 
 
 
@@ -30,12 +31,7 @@ function App() {
         
         <Router>
           <Switch>
-            {/* <PrivateRoute path="/appointment">
-              <Appointment />
-            </PrivateRoute> */}
-            {/* <PrivateRoute path="/dashboard">
-              <Dashboard />
-            </PrivateRoute> */}
+          
            <Route path="/dashboard">
               <Dashboard />
             </Route> 
@@ -45,9 +41,9 @@ function App() {
             <Route path="/explore">
               <ExploreCollection />
             </Route>
-            <Route path="/detailorder">
+            <PrivateRoute path="/detailorder">
               <DetailOrder />
-            </Route>
+            </PrivateRoute>
             <PrivateRoute path="/order/:id">
               <PlaceOrder />
             </PrivateRoute >
@@ -65,6 +61,9 @@ function App() {
             </Route>
             <Route exact path="/">
               <Home />
+            </Route>
+            <Route exact path="*">
+              <NotFound />
             </Route>
           </Switch>
         </Router>

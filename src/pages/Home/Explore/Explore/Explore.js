@@ -5,7 +5,8 @@ import { Grid, CardMedia } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { useHistory } from 'react-router-dom';
 import Button from '@mui/material/Button';
-import './Explore.css'
+import './Explore.css';
+import CircularProgress from '@mui/material/CircularProgress';
 
 const useStyles = makeStyles({
     root: {
@@ -53,6 +54,7 @@ const Explore = ({ explore }) => {
                     </Typography>
                     <Button style={{ color: 'black'}} className="button">Buy Now</Button>
                 </Paper>
+                <CircularProgress  />
             </Grid>
         </>
     );

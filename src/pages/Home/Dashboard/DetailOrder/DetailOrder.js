@@ -6,6 +6,7 @@ import Paper from '@mui/material/Paper';
 import { Button, CardMedia } from '@mui/material';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
+import Navigation from '../../Shared/Navigation/Navigation';
 
 
 const DetailOrder = ({ date }) => {
@@ -54,6 +55,7 @@ const DetailOrder = ({ date }) => {
 
     return (
         <div>
+            <Navigation></Navigation>
             <h2>Total Orders: {orders.length}</h2>
 
             <Container>
