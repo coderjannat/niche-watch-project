@@ -3,7 +3,7 @@
 It is a single page application made with ReactJS
 
 # Css Frame 
-In this I used Material UI
+In this App I used Material UI
 
 ## Live Demo of this website :
 
