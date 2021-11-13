@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import axios from 'axios';
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import { Paper, Grid, Typography, Box, Rating } from '@mui/material';
+import { Paper, Grid, Typography, Box, Rating,Container } from '@mui/material';
 
 
 const responsive = {
@@ -29,8 +29,9 @@ const responsive = {
 
 
 
-const ReviewCarouel = () => {
 
+const ReviewCarouel = () => {
+ 
   const [review, setReview] = useState([]);
 
   useEffect(() => {
@@ -39,38 +40,41 @@ const ReviewCarouel = () => {
   }, [])
 
   return (
-    <>
-      <Typography variant="h3" gutterBottom component="div">
+    < div >
+    <Container sx={{  mb:3, pt:6 }}>
+      <Typography variant="h3" sx={{ color: 'text.primary' }}  gutterBottom component="div">
         Review
       </Typography>
-      <Carousel responsive={responsive}>
+      <Carousel responsive={responsive}  >
         {review.map((order, index) => {
           return (
 
             <Box key={index}
+           
               sx={{
                 display: 'flex',
                 flexWrap: 'wrap',
                 '& > :not(style)': {
-                  m: 10,
-                  p:5,
-                  pb:3,
-                  width: 300,
+                 m: 2,
+                  p:2,
+                  
+                  width: 400,
                   height: 200,
                   overflow : "hidden "
                 },
               }}
             >
-              <Paper elevation={3} sx={{ py: 7 }}>
+              <Paper elevation={3} 
+                style={{ border: "none", backgroundColor: "#fdf0dd85",paddingTop: 50}} >
 
-                <Typography variant="h6" gutterBottom component="div">
+                <Typography variant="h6" gutterBottom component="div" style={{pt:4}}>
                   {order.name}
                 </Typography>
-                <Typography variant="h6" gutterBottom component="div">
+                <Typography variant="caption" gutterBottom component="div" readOnly>
                   {order.comment}
                 </Typography>
-                <Rating name="half-rating" defaultValue={order.nating} precision={0.5} />
-
+                <Rating name="half-rating" defaultValue={order.nating} precision={0.5} readOnly />
+                {order.rating}
               </Paper>
             </Box>
 
@@ -79,7 +83,8 @@ const ReviewCarouel = () => {
 
         )}
       </Carousel>;
-    </>
+      </Container>
+      </div>
   );
 };
 

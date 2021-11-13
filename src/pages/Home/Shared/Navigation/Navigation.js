@@ -1,44 +1,48 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Toolbar,
   IconButton,
   Typography,
   Button,
-  Badge,
-  Menu,
-  MenuItem,
   useMediaQuery,
   useTheme,
 } from "@mui/material";
-import { Link, NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Box } from "@mui/system";
-import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
+import { makeStyles } from '@mui/styles';
 import LocalMallIcon from "@mui/icons-material/LocalMall";
 import useAuth from './../../../Hooks/useAuth';
-import MenuIcon from "@mui/icons-material/Menu";
+
+
+const useStyles = makeStyles({
+  root: {
+    background: '#e1e4e9df',
+    position: '-webkit-sticky',
+    position: 'sticky',
+    top: 1,
+    bottom: 20,
+    zIndex: 5,
+  }
+});
+
 
 
 
 const Navigation = () => {
-  const [anchorEl, setAnchorEl] = useState(null);
+  const classes = useStyles();
   const { user, logout } = useAuth();
-  const [openDrawer, setOpenDrawer] = useState(true); //
+
   //theme instance
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.down("sm"));
 
   console.log(matches);
 
-  const openMenu = Boolean(anchorEl);
-  const handleClick = e => {
-    setAnchorEl(e.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
+
   return (
     <>
-      <Box elevation={0} sx={{ backgroundColor: "white" }}>
+      <Box elevation={0}
+        className={classes.root} >
         <Toolbar>
           <Box
             sx={{
@@ -46,99 +50,75 @@ const Navigation = () => {
               justifyContent: "space-between",
               alignItems: "center",
               width: "100%",
-              padding: "10px 0px ",
+              padding: "10px 5px ",
             }}
             component="div"
           >
             {/* logo */}
             <Box>
-              <IconButton>
-                <LocalMallIcon sx={{ fontSize: "2.4rem" }} />
+              <IconButton>WatchU
+                <LocalMallIcon sx={{ fontSize: "2.4rem", color:"#eea632"}} />
               </IconButton>
             </Box>
 
             {/* Links */}
-            
-              <Box sx={{ display: "flex" }}>
-                <Typography
-                  sx={{
-                    marginRight: "20px",
-                    cursor: "pointer",
-                    color: "#616161"
-                  }}
-                >
-                    <Link to="/"
-                    style={{textDecoration:"none",color: "#616161"}}
-                    >
-                  Home
-                  </Link>
-                </Typography>
 
-                <Typography
-                  sx={{
-                    marginRight: "20px",
-                    cursor: "pointer",
-                    color: "#616161",
-                  }}
+            <Box sx={{ display: "flex" }}>
+              <Typography
+                sx={{
+                  marginRight: "20px",
+                  cursor: "pointer",
+                  color: "#616161"
+                }}
+              >
+                <Link to="/"
+                  style={{ textDecoration: "none", color: "#616161" }}
                 >
-                  Brand
-                </Typography>
-                <Typography
-                  sx={{
-                    marginRight: "20px",
-                    cursor: "pointer",
-                    color: "#616161",
-                  }}
-                  aria-controls="basic-menu"
-                  aria-haspopup="true"
-                  aria-expanded={openMenu ? "true" : undefined}
-                  onClick={handleClick}
-                >
-                  Categories
-                </Typography>
-                {/* Dropdown Items */}
-                <Menu
-                  id="basic-menu"
-                  anchorEl={anchorEl}
-                  open={openMenu}
-                  onClose={handleClose}
-                >
-                   <Link to="/appointment"><MenuItem>appoin</MenuItem></Link>
-                  <Link to="/appointment"><Button color="inherit">Appointment</Button></Link>
-                  <MenuItem onClick={handleClose}>Women</MenuItem>
-                  <MenuItem onClick={handleClose}>Phones</MenuItem>
-                  <MenuItem onClick={handleClose}>Accessories</MenuItem>
-                  <MenuItem onClick={handleClose}>Others</MenuItem>
-                </Menu>
-                <Typography
-                  sx={{
-                    marginRight: "20px",
-                    cursor: "pointer",
-                    color: "#616161",
-                  }}
-                >
-                  Men
-                </Typography>
-                <Typography
-                  sx={{
-                    marginRight: "20px",
-                    cursor: "pointer",
-                    color: "#616161",
-                  }}
-                >
-                  Women
-                </Typography>
-                <Typography
-                  sx={{
-                    marginRight: "20px",
-                    cursor: "pointer",
-                    color: "#616161",
-                  }}
-                >
+                  Home
+                </Link>
+              </Typography>
+
+              <Typography
+                sx={{
+                  marginRight: "20px",
+                  cursor: "pointer",
+                  color: "#616161",
+                }}
+              ><Link to="/"
+                style={{ textDecoration: "none", color: "#616161" }}
+              >
+                  Products
+                </Link>
+              </Typography>
+
+
+              <Typography
+                sx={{
+                  marginRight: "20px",
+                  cursor: "pointer",
+                  color: "#616161",
+                }}
+              ><Link to="/"
+                style={{ textDecoration: "none", color: "#616161" }}
+              >
+                  My Order
+                </Link>
+              </Typography>
+
+              <Typography
+                sx={{
+                  marginRight: "20px",
+                  cursor: "pointer",
+                  color: "#616161",
+                }}
+              ><Link to="/"
+                style={{ textDecoration: "none", color: "#616161" }}
+              >
                   FAQ
-                </Typography>
-              </Box>
-            
+                </Link>
+              </Typography>
+            </Box>
+
 
             {/* button links */}
             <Box
@@ -146,27 +126,48 @@ const Navigation = () => {
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
-              }}
-            >
-              <Button
-                sx={{ background: "#ff4081", marginLeft: "10px" }}
-                disableElevation
-                variant="contained"
-              >
-                Account
-              </Button>
+              }}>
 
-              {matches ? (
-                <IconButton onClick={() => setOpenDrawer(true)}>
-                  <MenuIcon />
-                </IconButton>
-              ) : (
-                <IconButton>
-                  <Badge badgeContent={4} color="primary">
-                    <ShoppingBasketIcon color="action" />
-                  </Badge>
-                </IconButton>
-              )}
+
+
+              {
+                user?.email ?
+                  <Box
+                    sx={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                      width: "100%",
+                      padding: "10px 0px ",
+                    }}
+                    component="div">
+
+                    <Button
+                      sx={{ background: "#eea632", marginLeft: "10px" }}
+                      disableElevation
+
+                    ><Link to="/dashboard"
+                      style={{ textDecoration: "none", color: "#616161", background: "#eea632" }}
+                    > Dashboard</Link>
+                    </Button>
+                    <Button
+                      onClick={logout}
+                      sx={{ background: "#eea632", marginLeft: "10px",color: "#616161" }}
+                      disableElevation>Logout
+                    </Button>
+                    </Box>:<Button
+                    sx={{ background: "#eea632", marginLeft: "10px",color: "#616161" }}
+                    disableElevation
+
+                  ><Link to="/login"
+                    style={{ textDecoration: "none", color: "#616161", background: "#eea632" }}
+                  >
+                      Login
+                    </Link>
+                  </Button>
+
+              }
+
             </Box>
           </Box>
         </Toolbar>

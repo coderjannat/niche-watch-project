@@ -3,7 +3,7 @@ import useAuth from '../../../Hooks/useAuth';
 import Typography from '@mui/material/Typography';
 import { Container, Grid } from '@mui/material';
 import Paper from '@mui/material/Paper';
-import { Button } from '@mui/material';
+import { Button, CardMedia } from '@mui/material';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 
@@ -57,80 +57,42 @@ const DetailOrder = ({ date }) => {
             <h2>Total Orders: {orders.length}</h2>
 
             <Container>
-            <Typography variant="h4" sx={{ color: 'info.main', mb: 3 }}>Watch</Typography>
 
-            <Grid container spacing={2}>
 
-                {
-                     orders.map(( order,index) => {
-                         return (
-                        <Grid item xs={12} sm={6} md={4} key={index}>
-                            key={index}
-                        <Paper elevation={3} sx={{ py: 5 }}>
-                           
-                            <Typography variant="h6" gutterBottom component="div">
-                                {order.price}
-                            </Typography>
-                            <Typography variant="h6" gutterBottom component="div">
-                                {order.product}
-                            </Typography>
-                            {/* <Typography variant="caption" display="block" gutterBottom>
-                                {description} SPACES AVAILABLE
-                            </Typography> */}
-                            <Button variant="contained" onClick={() => handleDelete(order._id)}>Delete</Button>
-                        </Paper>
-                    </Grid>)
-                     }
-                    
-                    // <Watch
-                    //     key={index}
-                    //     watch={watch}
-                    // >
-                    // </Watch>
-                    
-                    )}
-               
+                <Grid container spacing={2}>
 
-            </Grid>
-        </Container>
+                    {
+                        orders.map((order, index) => {
+                            return (
+                                <Grid item xs={12} sm={6} md={4} key={index}>
 
-            {/* <TableContainer component={Paper}>
-                <Table sx={{}} aria-label="Orders table">
-                    <TableHead>
-                        <TableRow>
-                            <TableCell>Email</TableCell>
+                                    <Paper elevation={3} sx={{ py: 5 }} style={{ border: "none", backgroundColor: "transparent", }}>
+                                        <CardMedia
+                                            component="img"
+                                            image={order.img}
+                                            alt="watch"
+                                        />
+                                        <Typography variant="h6" gutterBottom component="div">
+                                            ${order.price}
+                                        </Typography>
+                                        <Typography variant="h6" gutterBottom component="div">
+                                            {order.product}
+                                        </Typography>
 
-                            <TableCell align="right">Product</TableCell>
-                            <TableCell align="right">Address</TableCell>
-                            <TableCell align="right">Price</TableCell>
-                            <TableCell align="right">Status</TableCell>
-                            <TableCell align="right">Action</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {orders.map((row) => (
-                            <TableRow
-                                key={row._id}
-                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                            >
-                                <TableCell component="th" scope="row">
-                                    {user.displayName}
-                                </TableCell>
-                                <TableCell align="right">{row.product}</TableCell>
-                                <TableCell align="right">{row.address}</TableCell>
-                                <TableCell align="right">{row.price}</TableCell>
-                                <TableCell align="right">
-                                    
+                                        <Button sx={{ m: 2 }} variant="outlined" onClick={() => handleDelete(order._id)}>Delete</Button>
+                                        <Button variant="outlined">{order.status}</Button>
+                                    </Paper>
+                                </Grid>)
+                        }
 
-                                </TableCell>
-                                <TableCell align="right">
-                                    <Button variant="contained" onClick={() => handleDelete(row._id)}>Delete</Button>
-                                </TableCell>
-                            </TableRow>
-                        ))}
-                    </TableBody>
-                </Table>
-            </TableContainer> */}
+
+                        )}
+
+
+                </Grid>
+            </Container>
+
+
         </div>
     );
 };

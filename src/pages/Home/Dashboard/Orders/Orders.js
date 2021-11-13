@@ -12,13 +12,14 @@ import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 
+
 const Orders = ({ date }) => {
     const { user, token } = useAuth();
     const [orders, setOrders] = useState([]);
     const [rest, setRest] = useState([]);
     // const [status, setStatus] = useState("");
     const [orderId, setOrderId] = useState("");
-    const { register, handleSubmit } = useForm();
+    const { register, handleSubmit,reset } = useForm();
     const [smShow, setSmShow] = useState(false);
     const history = useHistory();
 
@@ -40,7 +41,7 @@ const Orders = ({ date }) => {
         setOrderId(id);
         console.log(id);
     };
-
+  
 
     const onSubmit = (data) => {
         console.log(data, orderId);
@@ -83,7 +84,7 @@ const Orders = ({ date }) => {
 
 
     return (
-        <div>
+        <div className="body">
             <h2>Total Orders: {orders.length}</h2>
             <TableContainer component={Paper}>
                 <Table sx={{}} aria-label="Orders table">
@@ -116,10 +117,11 @@ const Orders = ({ date }) => {
                                             onClick={() => handleOrderId(row?._id)}
                                             {...register("status")}
                                         >
-                                            <option value={row?.status}>{row?.status}</option>
-                                            <option value="approve">pending</option>
-                                            <option value="done">Done</option>
+                                            <option value={row?.status}>{row?.status}Approved</option>
+                                            <option value="Pending">Pending</option>
+                                            <option value="Done">Done</option>
                                         </select>
+                                        
                                         <input type="submit" />
                                     </form>
 

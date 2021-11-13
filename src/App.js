@@ -14,6 +14,7 @@ import Home from './pages/Home/Home/Home';
 import PlaceOrder from './pages/Home/PlaceOrder/PlaceOrder';
 import Dashboard from './pages/Home/Dashboard/Dashboard/Dashboard';
 import Orders from './pages/Home/Dashboard/Orders/Orders';
+import ExploreCollection from './pages/Home/Explore/ExploreCollection/ExploreCollection';
 // import PrivateRoute from './Pages/Login/PrivateRoute/PrivateRoute';
 
 
@@ -34,6 +35,9 @@ function App() {
             </Route> 
             <Route path="/home">
               <Home />
+            </Route>
+            <Route path="/explore">
+              <ExploreCollection />
             </Route>
             <Route path="/order/:id">
               <PlaceOrder />

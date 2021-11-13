@@ -2,12 +2,14 @@ import axios from 'axios';
 import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
+
 import { Container, Grid, Typography } from '@mui/material';
-import Watch from '../Watch/Watch';
+
+import Explore from '../Explore/Explore';
 // import './Destination.css'
 
-const WatchCollection = () => {
-    const [watches, setWatches] = useState([])
+const ExploreCollection = () => {
+    const [explores, setExplores] = useState([])
 
 
     // const colors = ['danger','primary','warning','success','info'];
@@ -16,23 +18,23 @@ const WatchCollection = () => {
 
     useEffect(() => {
         axios('https://still-river-71219.herokuapp.com/watchCollection')
-            .then(res => setWatches(res.data))
+            .then(res => setExplores(res.data))
     }, [])
 
 
 
     return (
         <Container>
-            <Typography variant="h3" sx={{ color: 'text.primary', mb: 3,pt:4 }}>Our Popular Watch Collection</Typography>
+            <Typography variant="h3" sx={{ color: 'text.primary', mb: 3,pt:4 }}>Our Collection</Typography>
 
             <Grid container spacing={2}>
 
                 {
-                    watches.map((watch, index) => <Watch
+                    explores.map((explore, index) => <Explore
                         key={index}
-                        watch={watch}
+                        explore={explore}
                     >
-                    </Watch>)
+                    </Explore>)
                 }
 
             </Grid>
@@ -41,4 +43,4 @@ const WatchCollection = () => {
     );
 };
 
-export default WatchCollection;
+export default ExploreCollection;

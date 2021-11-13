@@ -1,0 +1,53 @@
+.form {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+ 
+  
+  select,
+  .inputStyle {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    border-radius: 4px;
+    border: 1px solid white;
+    padding: 10px 15px;
+    margin-bottom: 15px;
+    font-size: 14px;
+  }
+  
+  
+  .inputStyle[type="submit"],
+  .button {
+    position: relative;
+    background: #e69d0b;
+    color: white;
+    text-transform: uppercase;
+    border: none;
+    margin-top: 20px;
+    padding: 20px;
+    font-size: 16px;
+    font-weight: 100;
+    letter-spacing: 10px;
+    display: block;
+    appearance: none;
+    border-radius: 4px;
+    width: 100%;
+    font-weight: lighter;
+    transition: 0.3s all;
+  }
+  
+ 
+  
+  .inputStyle[type="submit"]:hover,
+  button[type="button"]:hover {
+    background: #a36c06;
+    color: white;
+  }
+  
+  .inputStyle[type="submit"]:active {
+    transition: 0.3s all;
+    top: 2px;
+  }
+  

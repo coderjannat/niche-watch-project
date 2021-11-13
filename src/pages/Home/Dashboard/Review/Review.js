@@ -35,7 +35,7 @@ const Review = () => {
           <input {...register("name", { required: true, maxLength: 20 })}
             style={{ width: 400, height: 30 }} placeholder="Name" defaultValue={user.displayName} readOnly />
           <br /> <br />
-          <textarea {...register("comment")} placeholder="Comment" style={{ width: 400, height: 35 }} />
+          <textarea {...register("comment")} placeholder="Comment" rows="4" cols="50" />
           <br /> <br />
           <input {...register("nating", { required: true, maxLength: 20 })}
             style={{ width: 400, height: 30 }} placeholder="Rating(between 1-5)" type="number" />
