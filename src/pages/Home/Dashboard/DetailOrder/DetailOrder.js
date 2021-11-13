@@ -34,7 +34,7 @@ const DetailOrder = ({ date }) => {
         const checker = window.confirm('Are you sure to delete?')
         if (checker) {
             console.log(id);
-            axios.delete(`http://localhost:5000/order?email=${user.email}`)
+            axios.delete(`https://still-river-71219.herokuapp.com/order?email=${user.email}`)
                 .then(backend => {
                     if (backend.data) {
 

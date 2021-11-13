@@ -15,13 +15,19 @@ import PlaceOrder from './pages/Home/PlaceOrder/PlaceOrder';
 import Dashboard from './pages/Home/Dashboard/Dashboard/Dashboard';
 import Orders from './pages/Home/Dashboard/Orders/Orders';
 import ExploreCollection from './pages/Home/Explore/ExploreCollection/ExploreCollection';
-// import PrivateRoute from './Pages/Login/PrivateRoute/PrivateRoute';
+import DetailOrder from './pages/Home/Dashboard/DetailOrder/DetailOrder';
+import Faq from './pages/Home/Faq/Faq';
+import PrivateRoute from './pages/privateRoute/PrivateRoute'
+import Footer from './pages/Home/Shared/Footer/Footer';
+
+
 
 
 function App() {
   return (
     <div className="App">
       <AuthProvider>
+        
         <Router>
           <Switch>
             {/* <PrivateRoute path="/appointment">
@@ -39,14 +45,20 @@ function App() {
             <Route path="/explore">
               <ExploreCollection />
             </Route>
-            <Route path="/order/:id">
-              <PlaceOrder />
+            <Route path="/detailorder">
+              <DetailOrder />
             </Route>
+            <PrivateRoute path="/order/:id">
+              <PlaceOrder />
+            </PrivateRoute >
             <Route path="/orders">
               <Orders />
             </Route>
             <Route path="/login">
               <Login />
+            </Route>
+            <Route path="/faq">
+              <Faq />
             </Route>
             <Route path="/register">
               <Register></Register>
@@ -56,6 +68,7 @@ function App() {
             </Route>
           </Switch>
         </Router>
+      <Footer></Footer>
       </AuthProvider>
     </div>
   );

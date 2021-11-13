@@ -13,8 +13,9 @@ import { useHistory } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 
 
-const Orders = ({ date }) => {
-    const { user, token } = useAuth();
+
+const Allorder = ({ date }) => {
+
     const [orders, setOrders] = useState([]);
     const [rest, setRest] = useState([]);
     // const [status, setStatus] = useState("");
@@ -23,17 +24,11 @@ const Orders = ({ date }) => {
     const [smShow, setSmShow] = useState(false);
     const history = useHistory();
 
-    useEffect(() => {
-        const url = `https://still-river-71219.herokuapp.com/order?email=${user.email}`
 
-        fetch(url, {
-            headers: {
-                'authorization': `Bearer ${token}`
-            }
-        })
-            .then(res => res.json())
-            .then(data => setOrders(data));
-    }, [date, user.email, token])
+    useEffect(() => {
+        axios('https://still-river-71219.herokuapp.com/totalorder')
+            .then(res => setOrders(res.data))
+    }, [])
 
 
     // STATUS UPDATE
@@ -65,7 +60,7 @@ const Orders = ({ date }) => {
         const checker = window.confirm('Are you sure to delete?')
         if (checker) {
             console.log(id);
-            axios.delete(`https://still-river-71219.herokuapp.com/order?email=${user.email}`)
+            axios.delete('https://still-river-71219.herokuapp.com/totaldelete')
                 .then(backend => {
                     if (backend.data) {
 
@@ -81,7 +76,6 @@ const Orders = ({ date }) => {
         }
         history.push("/home")
     }
-
 
     return (
         <div className="body">
@@ -106,7 +100,7 @@ const Orders = ({ date }) => {
                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                             >
                                 <TableCell component="th" scope="row">
-                                    {user.displayName}
+                                    {row.email}
                                 </TableCell>
                                 <TableCell align="right">{row.product}</TableCell>
                                 <TableCell align="right">{row.address}</TableCell>
@@ -138,4 +132,4 @@ const Orders = ({ date }) => {
     );
 };
 
-export default Orders;
+export default Allorder;

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-
+import Navigation from "../Shared/Navigation/Navigation"
 import useAuth from "../../Hooks/useAuth";
 import axios from 'axios';
 import { useParams } from 'react-router';
@@ -58,6 +58,8 @@ const PlaceOrder = () => {
   };
   return (
     <>
+  
+        <Navigation></Navigation>
       <Container>
         <Box sx={{ flexGrow: 1 }}>
         <Typography variant="h3" sx={{ color: 'text.primary', mb: 3,pt:4 }}>Place Order</Typography>

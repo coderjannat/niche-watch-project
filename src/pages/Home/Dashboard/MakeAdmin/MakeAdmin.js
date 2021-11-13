@@ -12,7 +12,7 @@ const MakeAdmin = () => {
     }
     const handleAdminSubmit = e => {
         const user = { email };
-        fetch('http://localhost:5000/users/admin', {
+        fetch('https://still-river-71219.herokuapp.com/users/admin', {
             method: 'PUT',
             headers: {
                 'authorization': `Bearer ${token}`,
@@ -26,9 +26,13 @@ const MakeAdmin = () => {
                     console.log(data);
                     setSuccess(true);
                 }
+                else {
+                    <Alert severity="success">not successfully!</Alert>
+                }
             })
 
         e.preventDefault()
+
     }
     return (
         <div>
@@ -38,11 +42,15 @@ const MakeAdmin = () => {
                     sx={{ width: '50%' }}
                     label="Email"
                     type="email"
+                    placeholder="Please Add From User List"
                     onBlur={handleOnBlur}
                     variant="standard" />
                 <Button type="submit" variant="contained">Make Admin</Button>
             </form>
+
+
             {success && <Alert severity="success">Made Admin successfully!</Alert>}
+
         </div>
     );
 };

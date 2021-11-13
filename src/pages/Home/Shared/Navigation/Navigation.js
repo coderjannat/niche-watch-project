@@ -84,7 +84,7 @@ const Navigation = () => {
                   cursor: "pointer",
                   color: "#616161",
                 }}
-              ><Link to="/"
+              ><Link to="/explore"
                 style={{ textDecoration: "none", color: "#616161" }}
               >
                   Products
@@ -98,7 +98,7 @@ const Navigation = () => {
                   cursor: "pointer",
                   color: "#616161",
                 }}
-              ><Link to="/"
+              ><Link to="/detailorder"
                 style={{ textDecoration: "none", color: "#616161" }}
               >
                   My Order
@@ -111,7 +111,7 @@ const Navigation = () => {
                   cursor: "pointer",
                   color: "#616161",
                 }}
-              ><Link to="/"
+              ><Link to="/faq"
                 style={{ textDecoration: "none", color: "#616161" }}
               >
                   FAQ
