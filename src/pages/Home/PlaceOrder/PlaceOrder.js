@@ -11,7 +11,7 @@ import Typography from '@mui/material/Typography';
 import { Box, Paper } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import { makeStyles } from '@mui/styles';
-import './PlaceOrder.css'
+import styles from './PlaceOrder.module.css'
 
 const useStyles = makeStyles({
   root: {
@@ -58,14 +58,14 @@ const PlaceOrder = () => {
   };
   return (
     <>
-  
-        <Navigation></Navigation>
+
+      <Navigation></Navigation>
       <Container>
         <Box sx={{ flexGrow: 1 }}>
-        <Typography variant="h3" sx={{ color: 'text.primary', mb: 3,pt:4 }}>Place Order</Typography>
+          <Typography variant="h3" sx={{ color: 'text.primary', mb: 3, pt: 4 }}>Place Order</Typography>
           <Grid container spacing={2} item xs={12} sm={6} md={12}>
             <Grid item xs={6}>
-               <Paper elevation={3} sx={{ py: 5 }}
+              <Paper elevation={3} sx={{ py: 5 }}
                 className={classes.root}
                 classes={{ root: state.raised ? classes.cardHovered : "" }}
                 onMouseOver={() => setState({ raised: true, shadow: 3 })}
@@ -88,61 +88,61 @@ const PlaceOrder = () => {
             </Grid>
 
             <Grid item xs={6}>
-            {/* <Box sx={{ pt: 5, mt:5 }}> */}
-              <form onSubmit={handleSubmit(onSubmit)}>
-                
+
+              <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+
 
                 <input
                   {...register("email", { required: true })}
                   placeholder="Email"
                   defaultValue={user.email}
-                  className="p-2 m-2 inputStyle"
+                  className={styles.inputStyle}
                   readOnly
                 />
                 <br />
 
-                <input className="m-2 p-2  fs-6  inputStyle" type="date" {...register("date")} />
+                <input className="inputStyle" type="date" {...register("date")} />
                 <br />
                 <input type="number"
                   {...register("price", { required: true })}
                   placeholder="price"
-                  className="p-2 m-2 inputStyle"
+                  className={styles.inputStyle}
                   required
                 />
-              
+
                 <br />
-                 <input
+                <input
                   {...register("address", { required: true })}
                   placeholder="address"
-                
-                  className="p-2 m-2 inputStyle"
+
+                  className={styles.inputStyle}
                   required
 
                 />
                 <br />
-                <input 
+                <input
                   {...register("img", { required: true })}
                   placeholder="product"
                   defaultValue={watch.img}
-                  className="p-2 m-2 inputStyle"
+                  className={styles.inputStyle}
                   readOnly
                 />
                 <br />
-                <input 
+                <input
                   {...register("product", { required: true })}
-                  
+
                   defaultValue={watch.name}
-                  className="p-2 m-2 inputStyle"
+                  className={styles.inputStyle}
                   readOnly
                 />
-                
-               
+
+
                 <br />
                 {errors.exampleRequired && <span>This field is required</span>}
 
-                <input type="submit" className="btn btn-info w-50 m-2 inputStyle" />
+                <input type="submit" className={styles.inputStyle} />
 
-               
+
               </form>
               {/* </Box> */}
             </Grid>

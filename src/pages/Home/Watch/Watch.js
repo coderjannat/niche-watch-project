@@ -5,7 +5,7 @@ import { Grid, CardMedia } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { useHistory } from 'react-router-dom';
 import Button from '@mui/material/Button';
-import './Watch.css'
+import styles from  './Watch.module.css'
 
 const useStyles = makeStyles({
     root: {
@@ -51,7 +51,7 @@ const Watch = ({ watch }) => {
                     <Typography variant="caption" display="block" gutterBottom>
                         {title} 
                     </Typography>
-                    <Button style={{ color: 'black'}} className="button">Buy Now</Button>
+                    <Button style={{ color: 'black'}} className={styles.button}>Buy Now</Button>
                 </Paper>
             </Grid>
         </>

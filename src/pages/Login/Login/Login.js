@@ -1,11 +1,18 @@
-import { Container, Typography, TextField, Button, CircularProgress, Alert } from '@mui/material';
+import { Container, Typography, TextField, Button, CircularProgress, Alert, InputAdornment  } from '@mui/material';
 import React, { useState } from 'react';
-import { Grid } from '@mui/material';
-// import login from '../../../images/login.png'
 import { NavLink, useLocation, useHistory } from 'react-router-dom';
+import Navigation from '../../Home/Shared/Navigation/Navigation';
 import useAuth from '../../Hooks/useAuth';
+import './Login.css';
+import { BsEnvelopeFill } from 'react-icons/bs';
+import { FaKey } from 'react-icons/fa';
+import { FcGoogle } from 'react-icons/fc';
+
+
+
 
 const Login = () => {
+
     const [loginData, setLoginData] = useState({});
     const { user, loginUser, signInWithGoogle, isLoading, authError } = useAuth();
 
@@ -28,46 +35,64 @@ const Login = () => {
         signInWithGoogle(location, history)
     }
     return (
+
+          <div  className="bg">
+        <Navigation></Navigation>
+      
         <Container>
-            <Grid container spacing={2}>
-                <Grid item sx={{ mt: 8 }} xs={12} md={6}>
-                    <Typography variant="body1" gutterBottom>Login</Typography>
+           
+                    <Typography  sx={{ mt: 5 }} variant="h2" gutterBottom>Login</Typography>
                     <form onSubmit={handleLoginSubmit}>
-                        <TextField
-                            sx={{ width: '75%', m: 1 }}
+                      <TextField
+                         InputProps={{
+                            startAdornment: (
+                              <InputAdornment position="start">
+                                <BsEnvelopeFill />
+                              </InputAdornment>
+                            )
+                          }}
+                           sx={{ width: '50%', m: 1, backgroundColor:'transparent'}}
                             id="standard-basic"
                             label="Your Email"
                             name="email"
+                            color="warning"
                             onChange={handleOnChange}
                             variant="standard" />
                         <TextField
-                            sx={{ width: '75%', m: 1 }}
+                         InputProps={{
+                            startAdornment: (
+                              <InputAdornment position="start">
+                                <FaKey />
+                              </InputAdornment>
+                            )
+                          }}
+                            sx={{ width: '50%', m: 1,mb:2 }}
                             id="standard-basic"
                             label="Your Password"
                             type="password"
                             name="password"
                             onChange={handleOnChange}
                             variant="standard" />
-
-                        <Button sx={{ width: '75%', m: 1 }} type="submit" variant="contained">Login</Button>
+                            <br/>
+                        <Button  style={{  backgroundColor:"#eea632",color:'white',boxShadow: '0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19)'}} sx={{ width: '30%', m: 2 }} disableElevation type="submit" >Login</Button>
+                        <br/>
                         <NavLink
-                            style={{ textDecoration: 'none' }}
+                            style={{ textDecoration: 'none',color:'white' }}
                             to="/register">
-                            <Button variant="text">New User? Please Register</Button>
+                            <Button  sx={{color:'black'}} variant="text">New User? Please Register</Button>
                         </NavLink>
                         {isLoading && <CircularProgress />}
                         {user?.email && <Alert severity="success">Login successfully!</Alert>}
                         {authError && <Alert severity="error">{authError}</Alert>}
                     </form>
-                    <p>------------------------</p>
-                    <Button onClick={handleGoogleSignIn} variant="contained">Google Sign In</Button>
-                </Grid>
-                <Grid item xs={12} md={6}>
-                    {/* <img style={{ width: '100%' }} src={login} alt="" /> */}
-                </Grid>
-            </Grid>
+                    <p>Or</p>
+            <p sx={{ mb: 5}}>Login With <Button style={{ backgroundColor:"transparent"}} alt="" sx={{ mb: 2}} onClick={handleGoogleSignIn} ><FcGoogle size={40}/> </Button> </p>
+               
         </Container>
+        </div>
+    
     );
 };
 
-export default Login;
+
+export default Login ;

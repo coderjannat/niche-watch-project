@@ -2,16 +2,14 @@ import React from 'react';
 import { makeStyles } from '@mui/styles';
 import './Banner.css';
 import { Link } from 'react-router-dom';
-
-
-import {Box ,Button,Typography} from '@mui/material';
+import { Box, Button } from '@mui/material';
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
     backgroundColor: "#fff"
   },
   hero: {
-    backgroundImage: ` url('https://i.ibb.co/6R59Pmn/Add-a-heading.png')`,
+    backgroundImage: ` url('https://i.ibb.co/z7rcRZc/wrist-watch-3074570.jpg')`,
     height: "500px",
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat",
@@ -24,37 +22,37 @@ const useStyles = makeStyles((theme) => ({
     color: "#fff",
     fontSize: "4rem",
   },
-  
+
   blogTitle: {
     fontWeight: 800,
-   
+
   }
 }));
 
 const Banner = () => {
-    const classes = useStyles();
+  const classes = useStyles();
 
   return (
-      <>
-    <Box className={classes.hero}>
-    
-      
-        <br/>
-        <br/>
-        <br/>
-        <br/>
+    <>
+      <Box className={classes.hero}>
 
-                <Button
-                     className="glow-on-hover"
 
-                    ><Link to="/explore"
-                      style={{ textDecoration: "none", color: "white" }}
-                    > EXPLORE MORE ! ! !</Link>
-                    </Button>
-                
+        <br />
+        <br />
+        <br />
+        <br />
+
+        <Button
+          className="glow-on-hover"
+
+        ><Link to="/explore"
+          style={{ textDecoration: "none", color: "white" }}
+        > EXPLORE MORE ! ! !</Link>
+        </Button>
+
       </Box>
-      
-      </>
+
+    </>
   );
 };
 
