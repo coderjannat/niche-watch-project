@@ -85,8 +85,7 @@ const Login = () => {
                         {user?.email && <Alert severity="success">Login successfully!</Alert>}
                         {authError && <Alert severity="error">{authError}</Alert>}
                     </form>
-                    <p>Or</p>
-            <p sx={{ mb: 5}}>Login With <Button style={{ backgroundColor:"transparent"}} alt="" sx={{ mb: 2}} onClick={handleGoogleSignIn} ><FcGoogle size={40}/> </Button> </p>
+            <p sx={{ mb: 5}}>Or, Login With <Button style={{ backgroundColor:"transparent"}} alt="" sx={{ mb: 2}} onClick={handleGoogleSignIn} ><FcGoogle size={40}/> </Button> </p>
                
         </Container>
         </div>

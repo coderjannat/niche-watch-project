@@ -1,9 +1,11 @@
 import { Container, Typography, TextField, Button, CircularProgress, Alert } from '@mui/material';
 import React, { useState } from 'react';
 import { Grid } from '@mui/material';
-// import login from '../../../images/login.png'
 import { NavLink, useHistory } from 'react-router-dom';
 import useAuth from '../../Hooks/useAuth';
+import './Regiser.css';
+import Navigation from '../../Home/Shared/Navigation/Navigation';
+
 
 const Register = () => {
     const [loginData, setLoginData] = useState({});
@@ -26,20 +28,22 @@ const Register = () => {
         e.preventDefault();
     }
     return (
+        <div className="bg2">
+             <Navigation></Navigation>
         <Container>
-            <Grid container spacing={2}>
-                <Grid item sx={{ mt: 8 }} xs={12} md={6}>
-                    <Typography variant="body1" gutterBottom>Register</Typography>
+           
+               
+                    <Typography sx={{ mt: 5 }} variant="h2" gutterBottom>Register</Typography>
                     {!isLoading && <form onSubmit={handleLoginSubmit}>
                         <TextField
-                            sx={{ width: '75%', m: 1 }}
+                            sx={{ width: '50%', m: 1 }}
                             id="standard-basic"
                             label="Your Name"
                             name="name"
                             onBlur={handleOnBlur}
                             variant="standard" />
                         <TextField
-                            sx={{ width: '75%', m: 1 }}
+                            sx={{ width: '50%', m: 1 }}
                             id="standard-basic"
                             label="Your Email"
                             name="email"
@@ -47,7 +51,7 @@ const Register = () => {
                             onBlur={handleOnBlur}
                             variant="standard" />
                         <TextField
-                            sx={{ width: '75%', m: 1 }}
+                            sx={{ width: '50%', m: 1 }}
                             id="standard-basic"
                             label="Your Password"
                             type="password"
@@ -55,7 +59,7 @@ const Register = () => {
                             onBlur={handleOnBlur}
                             variant="standard" />
                         <TextField
-                            sx={{ width: '75%', m: 1 }}
+                            sx={{ width: '50%', m: 1 }}
                             id="standard-basic"
                             label="ReType Your Password"
                             type="password"
@@ -63,22 +67,20 @@ const Register = () => {
                             onBlur={handleOnBlur}
                             variant="standard" />
 
-                        <Button sx={{ width: '75%', m: 1 }} type="submit" variant="contained">Register</Button>
+                        <Button style={{  backgroundColor:"#eea632",color:'white',boxShadow: '0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19)'}} sx={{ width: '50%', m: 1 }} type="submit" variant="contained">Register</Button>
+                        <br />
                         <NavLink
-                            style={{ textDecoration: 'none' }}
+                            style={{ textDecoration: 'none',color:'white' }}
                             to="/login">
-                            <Button variant="text">Already Registered? Please Login</Button>
+                            <Button sx={{color:'black'}} variant="text">Already Registered? Please Login</Button>
                         </NavLink>
                     </form>}
                     {isLoading && <CircularProgress />}
                     {user?.email && <Alert severity="success">User Created successfully!</Alert>}
                     {authError && <Alert severity="error">{authError}</Alert>}
-                </Grid>
-                <Grid item xs={12} md={6}>
-                    {/* <img style={{ width: '100%' }} src={login} alt="" /> */}
-                </Grid>
-            </Grid>
+                
         </Container>
+        </div>
     );
 };
 
