@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@mui/styles';
-import './Banner.css';
+import styles from './Banner.module.css';
 import { Link } from 'react-router-dom';
 import { Box, Button } from '@mui/material';
 
@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#fff"
   },
   hero: {
-    backgroundImage: ` url('https://i.ibb.co/z7rcRZc/wrist-watch-3074570.jpg')`,
+    backgroundImage: ` url('https://i.ibb.co/r693f7q/pexels-jatin-anand-125779.jpg')`,
     height: "500px",
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat",
@@ -39,11 +39,9 @@ const Banner = () => {
 
         <br />
         <br />
-        <br />
-        <br />
-
+       
         <Button
-          className="glow-on-hover"
+          className={styles.glowOnHover}
 
         ><Link to="/explore"
           style={{ textDecoration: "none", color: "white" }}

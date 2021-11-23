@@ -75,6 +75,7 @@ const Register = () => {
                             <Button sx={{color:'black'}} variant="text">Already Registered? Please Login</Button>
                         </NavLink>
                     </form>}
+                    <br/>
                     {isLoading && <CircularProgress />}
                     {user?.email && <Alert severity="success">User Created successfully!</Alert>}
                     {authError && <Alert severity="error">{authError}</Alert>}

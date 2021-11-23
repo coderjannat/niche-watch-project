@@ -6,7 +6,7 @@ import Navigation from './../../Shared/Navigation/Navigation'
 import { Container, Grid, Typography } from '@mui/material';
 
 import Explore from '../Explore/Explore';
-// import './Destination.css'
+
 
 const ExploreCollection = () => {
     const [explores, setExplores] = useState([])

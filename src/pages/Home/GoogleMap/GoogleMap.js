@@ -13,9 +13,9 @@ const GoogleMap = () => {
   };
   return (
     <div>
-      <h2 className="text-center pt-5 ">Find us on Google Map!!!</h2>
-      <p className="text-center pb-5">Very Easy to find us.Just google our Address on google map.</p>
-      <div className="pb-5" style={{ height: '80vh', width: '100%' }}>
+      <p className="text-center pt-5 ">Find us on Google Map!!!</p>
+    
+      <div style={{ height: '60vh', width: '100%', marginBottom:20}}>
 
         <GoogleMapReact
 
