@@ -1,6 +1,5 @@
-# Travel Related Web App
-
-It is a single page application made with ReactJS
+# A niche Web App
+- [Backend/Server](https://github.com/coderjannat/niche-watch-server)  
 
 # Css Frame 
 In this App I used Material UI
